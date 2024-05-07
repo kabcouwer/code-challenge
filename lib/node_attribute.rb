@@ -1,15 +1,8 @@
-class NodeAttribute < Hash
+class NodeAttribute
+  attr_reader :name, :value
+  
   def initialize(name, value)
-    super()
-    self[:name] = name
-    self[:value] = value
-  end
-
-  def name
-    self[:name]
-  end
-
-  def value
-    self[:value]
+    @name = name
+    @value = value
   end
 end

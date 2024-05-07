@@ -24,7 +24,7 @@ RSpec.describe Node do
     end
 
     it "has attributes" do
-      expect(root_node[:attributes]).to eq(attributes)
+      expect(root_node[:node_attributes]).to eq(attributes)
       expect(attributes).to be_an_instance_of(Array)
       expect(attributes.first).to be_an_instance_of(NodeAttribute)
     end
@@ -49,7 +49,7 @@ RSpec.describe Node do
       child = root_node.add_child("head")
 
       expect { child.parent = nil }.to raise_error(NoMethodError)
-      
+
       expect(child.parent).to eq(root_node)
     end
   end
@@ -63,7 +63,7 @@ RSpec.describe Node do
     it "adds a child node to the current node" do
       child = root_node.add_child(child_name, child_attributes)
       expect(child[:name]).to eq(child_name)
-      expect(child[:attributes]).to eq(child_attributes)
+      expect(child[:node_attributes]).to eq(child_attributes)
       expect(child[:children]).to eq([])
       expect(child.parent).to eq(root_node)
       expect(root_node[:children]).to include(child)
@@ -84,7 +84,7 @@ RSpec.describe Node do
     it "adds a sibling node to the current node" do
       sibling = node.add_sibling(sibling_name, sibling_attributes)
       expect(sibling[:name]).to eq(sibling_name)
-      expect(sibling[:attributes]).to eq(sibling_attributes)
+      expect(sibling[:node_attributes]).to eq(sibling_attributes)
       expect(sibling[:children]).to eq([])
       expect(sibling.parent).to eq(node.parent)
       expect(node.parent[:children]).to include(sibling)
